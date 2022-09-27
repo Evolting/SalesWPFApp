@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Execution;
 using BusinessObject;
 using DataAccess.Entity;
 using DataAccess.Repository;
@@ -8,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SalesWPFApp.ViewModel
@@ -34,6 +36,28 @@ namespace SalesWPFApp.ViewModel
             var mapper = config.CreateMapper();
 
             this._orders = new ObservableCollection<OrderObject>(orderList.Select(mem => mapper.Map<Order, OrderObject>(mem)));
+
+            DeleteCommand = new RelayCommand<OrderObject>(
+                (o) => o != null, // CanExecute()
+                (o) => removeOrder(o) // Execute()
+            );
+            AddCommand = new RelayCommand<OrderObject>(
+                (o) => true, // CanExecute()
+                (o) => addOrder(mapper.Map<OrderObject, Order>(o)) // Execute()
+            );
+        }
+ 
+        private void addOrder(Order order)
+        {
+            MessageBox.Show(order.OrderId.ToString());
+            orderRepository.InsertOrder(order);
+        }
+
+        private void removeOrder(OrderObject o)
+        {
+            Order order = orderRepository.GetOrderByID(o.OrderId);
+
+            orderRepository.DeleteOrder(order);
         }
     }
 }

@@ -20,14 +20,13 @@ namespace SalesWPFApp
                 }
             }
             var objects = (object[])values;
-            var productId = (string)objects[0];
-            var categoryId = (string)values[1];
-            var productName = (string)values[2];
-            var weight = (string)values[3];
-            var unitPrice = (string)values[4];
-            var unitsInStock = (string)values[5];
-            return new ProductObject(Int32.Parse(productId), Int32.Parse(categoryId), productName, weight, Decimal.Parse(unitPrice), Int32.Parse(unitsInStock));
-
+            var orderId = (string)objects[0];
+            var memberId = (string)values[1];
+            var orderDate = (string)values[2];
+            var requiredDate = (string)values[3];
+            var shippedDate = (string)values[4];
+            var freight = (string)values[5];
+            return new OrderObject(Int32.Parse(orderId), Int32.Parse(memberId), DateTime.Parse(orderDate), DateTime.Parse(requiredDate), DateTime.Parse(shippedDate), Decimal.Parse(freight));
 
         }
 

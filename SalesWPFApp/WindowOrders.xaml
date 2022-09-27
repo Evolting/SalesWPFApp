@@ -5,9 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SalesWPFApp"
         mc:Ignorable="d"
-        Title="WindowOrders" Height="450" Width="800">
+        Title="WindowOrders" Height="600" Width="500">
+    <Window.Resources>
+        <local:OrderConverter x:Key="Converter" />
+    </Window.Resources>
     <StackPanel>
-        <Label Content="Order List"/>
+                <Label Content="Order List"/>
+        <Label>Order Id</Label>
+        <TextBox 
+            Name="txtOrderId"
+            Text="{Binding Path=OrderId, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvOrders, Path=SelectedItem}"></TextBox>
+        <Label>Member Id</Label>
+        <TextBox
+            Name="txtMemberId"
+            Text="{Binding Path=MemberId, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvOrders, Path=SelectedItem}"></TextBox>
+        <Label>Order Date</Label>
+        <DatePicker
+            Name="dpOrderDate"
+            SelectedDate="{Binding Path=OrderDate, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvOrders, Path=SelectedItem}"></DatePicker>
+        <Label>Required Date</Label>
+        <DatePicker
+            Name="dpRequiredDate"
+            SelectedDate="{Binding Path=RequiredDate, Mode=OneWay}"
+            DataContext="{Binding ElementName=lvOrders, Path=SelectedItem}"></DatePicker>
+        <Label>Shipped Date</Label>
+        <DatePicker
+            Name="dpShippedDate"
+            SelectedDate="{Binding Path=ShippedDate, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvOrders, Path=SelectedItem}"></DatePicker>
+        <Label>Freight</Label>
+        <TextBox
+            Name="txtFreight"
+            Text="{Binding Path=Freight, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvOrders, Path=SelectedItem}"></TextBox>
+        <Button Name="btnAdd" Content="Add" 
+                Command="{Binding AddCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource Converter}">
+                    <Binding Path="Text" ElementName="txtOrderId"/>
+                    <Binding Path="Text" ElementName="txtMemberId"/>
+                    <Binding Path="Text" ElementName="dpOrderDate"/>
+                    <Binding Path="Text" ElementName="dpRequiredDate"/>
+                    <Binding Path="Text" ElementName="dpShippedDate"/>
+                    <Binding Path="Text" ElementName="txtFreight"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        <Button Name="btnUpdate" Content="Update"
+                Command="{Binding UpdateCommand}">
+        </Button>
+        <Button Name="btnDelete" Content="Delete"
+                Command="{Binding DeleteCommand}">
+        </Button>
         <ListView Grid.Row="3"
                   Grid.Column="0"
                   Name="lvOrders"
