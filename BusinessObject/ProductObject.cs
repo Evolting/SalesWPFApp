@@ -15,6 +15,16 @@ namespace BusinessObject
         private decimal unitPrice;
         private int unitsInStock;
 
+        public ProductObject(int productId, int categoryId, string productName, string weight, decimal unitPrice, int unitsInStock)
+        {
+            this.productId = productId;
+            this.categoryId = categoryId;
+            this.productName = productName;
+            this.weight = weight;
+            this.unitPrice = unitPrice;
+            this.unitsInStock = unitsInStock;
+        }
+
         public int ProductId { get => productId; set => productId = value; }
         public int CategoryId { get => categoryId; set => categoryId = value; }
         public string ProductName { get => productName; set => productName = value; }

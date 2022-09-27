@@ -5,8 +5,128 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SalesWPFApp"
         mc:Ignorable="d"
-        Title="WindowProducts" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="WindowProducts" Height="700" Width="600">
+    <Window.Resources>
+        <local:ProductConverter x:Key="Converter" />
+    </Window.Resources>
+    <StackPanel>
+        <Label Content="Member List"/>
+        <Label>Product Id</Label>
+        <TextBox 
+            Name="txtProductId"
+            Text="{Binding Path=ProductId, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvProducts, Path=SelectedItem}"></TextBox>
+        <Label>Category Id</Label>
+        <TextBox
+            Name="txtCategoryId"
+            Text="{Binding Path=CategoryId, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvProducts, Path=SelectedItem}"></TextBox>
+        <Label>Product Name</Label>
+        <TextBox
+            Name="txtProductName"
+            Text="{Binding Path=ProductName, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvProducts, Path=SelectedItem}"></TextBox>
+        <Label>Weight</Label>
+        <TextBox
+            Name="txtWeight"
+            Text="{Binding Path=Weight, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvProducts, Path=SelectedItem}"></TextBox>
+        <Label>Unit Price</Label>
+        <TextBox
+            Name="txtUnitPrice"
+            Text="{Binding Path=UnitPrice, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvProducts, Path=SelectedItem}"></TextBox>
+        <Label>Units In Stock</Label>
+        <TextBox
+            Name="txtUnitsInStock"
+            Text="{Binding Path=UnitsInStock, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvProducts, Path=SelectedItem}"></TextBox>
+        <Button Name="btnAdd" Content="Add" 
+                Command="{Binding AddCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource Converter}">
+                    <Binding Path="Text" ElementName="txtProductId"/>
+                    <Binding Path="Text" ElementName="txtCategoryId"/>
+                    <Binding Path="Text" ElementName="txtProductName"/>
+                    <Binding Path="Text" ElementName="txtWeight"/>
+                    <Binding Path="Text" ElementName="txtUnitPrice"/>
+                    <Binding Path="Text" ElementName="txtUnitsInStock"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        <Button Name="btnUpdate" Content="Update"
+                Command="{Binding UpdateCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource Converter}">
+                    <Binding Path="Text" ElementName="txtProductId"/>
+                    <Binding Path="Text" ElementName="txtCategoryId"/>
+                    <Binding Path="Text" ElementName="txtProductName"/>
+                    <Binding Path="Text" ElementName="txtWeight"/>
+                    <Binding Path="Text" ElementName="txtUnitPrice"/>
+                    <Binding Path="Text" ElementName="txtUnitsInStock"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        <Button Name="btnDelete" Content="Delete"
+                Command="{Binding DeleteCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource Converter}">
+                    <Binding Path="Text" ElementName="txtProductId"/>
+                    <Binding Path="Text" ElementName="txtCategoryId"/>
+                    <Binding Path="Text" ElementName="txtProductName"/>
+                    <Binding Path="Text" ElementName="txtWeight"/>
+                    <Binding Path="Text" ElementName="txtUnitPrice"/>
+                    <Binding Path="Text" ElementName="txtUnitsInStock"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        <Label Content="Product List"/>
+        <ListView Grid.Row="3"
+                  Grid.Column="0"
+                  Name="lvProducts"
+                  ItemsSource="{Binding Products}"
+                  Grid.ColumnSpan="3"
+                  SelectedIndex="0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding ProductId}"
+                                    Width="100">
+                        <GridViewColumn.Header>
+                            Id
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding CategoryId}"
+                                    Width="100">
+                        <GridViewColumn.Header>
+                            Category
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding ProductName}"
+                                    Width="100">
+                        <GridViewColumn.Header>
+                            Name
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Weight}"
+                                    Width="100">
+                        <GridViewColumn.Header>
+                            Weight
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding UnitPrice}"
+                                    Width="100">
+                        <GridViewColumn.Header>
+                            Price
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding UnitsInStock}"
+                                    Width="100">
+                        <GridViewColumn.Header>
+                            In Stock
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
 </Window>

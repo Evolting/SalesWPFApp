@@ -6,8 +6,72 @@
         xmlns:local="clr-namespace:SalesWPFApp"
         mc:Ignorable="d"
         Title="WindowMembers" Height="450" Width="600">
+    <Window.Resources>
+        <local:MemberConverter x:Key="Converter" />
+    </Window.Resources>
     <StackPanel>
         <Label Content="Member List"/>
+        <Label>Id</Label>
+        <TextBox 
+            Name="txtMemberId"
+            Text="{Binding Path=MemberId, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvMembers, Path=SelectedItem}"></TextBox>
+        <Label>Email</Label>
+        <TextBox
+            Name="txtMemberEmail"
+            Text="{Binding Path=Email, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvMembers, Path=SelectedItem}"></TextBox>
+        <Label>Company</Label>
+        <TextBox
+            Name="txtCompanyname"
+            Text="{Binding Path=CompanyName, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvMembers, Path=SelectedItem}"></TextBox>
+        <Label>City</Label>
+        <TextBox
+            Name="City"
+            Text="{Binding Path=City, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvMembers, Path=SelectedItem}"></TextBox>
+        <Label>Country</Label>
+        <TextBox
+            Name="Country"
+            Text="{Binding Path=Country, Mode=OneWay}" 
+            DataContext="{Binding ElementName=lvMembers, Path=SelectedItem}"></TextBox>
+        <Button Name="btnAdd" Content="Add" 
+                Command="{Binding AddCommand}">
+            <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource Converter}">
+                        <Binding Path="Text" ElementName="txtMemberId"/>
+                        <Binding Path="Text" ElementName="txtMemberEmail"/>
+                        <Binding Path="Text" ElementName="txtCompanyname"/>
+                        <Binding Path="Text" ElementName="City"/>
+                        <Binding Path="Text" ElementName="Country"/>
+                    </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        <Button Name="btnUpdate" Content="Update"
+                Command="{Binding UpdateCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource Converter}">
+                    <Binding Path="Text" ElementName="txtMemberId"/>
+                    <Binding Path="Text" ElementName="txtMemberEmail"/>
+                    <Binding Path="Text" ElementName="txtCompanyname"/>
+                    <Binding Path="Text" ElementName="City"/>
+                    <Binding Path="Text" ElementName="Country"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        <Button Name="btnDelete" Content="Delete"
+                Command="{Binding DeleteCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource Converter}">
+                    <Binding Path="Text" ElementName="txtMemberId"/>
+                    <Binding Path="Text" ElementName="txtMemberEmail"/>
+                    <Binding Path="Text" ElementName="txtCompanyname"/>
+                    <Binding Path="Text" ElementName="City"/>
+                    <Binding Path="Text" ElementName="Country"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
         <ListView Grid.Row="3"
                   Grid.Column="0"
                   Name="lvMembers"

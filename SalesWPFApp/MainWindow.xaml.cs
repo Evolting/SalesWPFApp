@@ -31,5 +31,19 @@ namespace SalesWPFApp
 
             wdMembers.ShowDialog();
         }
+
+        private void btnProduct_Click(object sender, RoutedEventArgs e)
+        {
+            WindowProducts wdProducts = new WindowProducts();
+
+            wdProducts.ShowDialog();
+        }
+
+        private void btnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            WindowOrders wdOrders = new WindowOrders();
+
+            wdOrders.ShowDialog();
+        }
     }
 }

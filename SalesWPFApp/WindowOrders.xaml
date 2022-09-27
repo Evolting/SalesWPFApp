@@ -6,7 +6,54 @@
         xmlns:local="clr-namespace:SalesWPFApp"
         mc:Ignorable="d"
         Title="WindowOrders" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <Label Content="Order List"/>
+        <ListView Grid.Row="3"
+                  Grid.Column="0"
+                  Name="lvOrders"
+                  ItemsSource="{Binding Orders}"
+                  Grid.ColumnSpan="3"
+                  SelectedIndex="0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding OrderId}"
+                                    Width="100">
+                        <GridViewColumn.Header>
+                            Id
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding MemberId}"
+                                    Width="100">
+                        <GridViewColumn.Header>
+                            MemberId
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding OrderDate}"
+                                    Width="100">
+                        <GridViewColumn.Header>
+                            OrderDate
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding RequiredDate}"
+                                    Width="100">
+                        <GridViewColumn.Header>
+                            RequiredDate
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding ShippedDate}"
+                                    Width="100">
+                        <GridViewColumn.Header>
+                            ShippedDate
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Freight}"
+                                    Width="100">
+                        <GridViewColumn.Header>
+                            Freight
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
 </Window>

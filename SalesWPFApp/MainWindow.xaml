@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SalesWPFApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="200">
+        Title="MainWindow" Height="300" Width="500">
     <StackPanel>
         <Label Content="Sales Management System" HorizontalAlignment="Center" Margin="0,50,0,50"/>
         <Button Name="btnMember" Content="Show Member" Click="btnMember_Click"></Button>
-        <Button Name="btnOrder" Content="Show Order" ></Button>
-        <Button Name="btnProduct" Content="Show Product" ></Button>
+        <Button Name="btnOrder" Content="Show Order" Click="btnOrder_Click" ></Button>
+        <Button Name="btnProduct" Content="Show Product" Click="btnProduct_Click" ></Button>
     </StackPanel>
 </Window>
