@@ -18,12 +18,16 @@ namespace SalesWPFApp.ViewModel
     {
         IOrderRepository orderRepository = new OrderRepository();
 
+        IOrderDetailRepository orderDetailRepository = new OrderDetailRepository();
+
         private readonly ObservableCollection<OrderObject> _orders;
 
         public ObservableCollection<OrderObject> Orders => _orders;
 
         public ICommand DeleteCommand { get; set; }
         public ICommand AddCommand { get; set; }
+        public ICommand UpdateCommand { get; set; }
+        public ICommand DetailCommand { get; set; }
 
         public OrderViewModel()
         {
@@ -45,11 +49,29 @@ namespace SalesWPFApp.ViewModel
                 (o) => true, // CanExecute()
                 (o) => addOrder(mapper.Map<OrderObject, Order>(o)) // Execute()
             );
+            UpdateCommand = new RelayCommand<OrderObject>(
+                (o) => true, // CanExecute()
+                (o) => updateOrder(mapper.Map<OrderObject, Order>(o)) // Execute()
+            );
+            DetailCommand = new RelayCommand<OrderObject>(
+                (o) =>  true, // CanExecute()
+                (o) => seeDetail(o) // Execute()
+            );
         }
- 
+
+        private void seeDetail(OrderObject o)
+        {
+            WindowOrderDetail wdOrderDetail = new WindowOrderDetail(o);
+            wdOrderDetail.ShowDialog();
+        }
+
+        private void updateOrder(Order order)
+        {
+            orderRepository.UpdateOrder(order);
+        }
+
         private void addOrder(Order order)
         {
-            MessageBox.Show(order.OrderId.ToString());
             orderRepository.InsertOrder(order);
         }
 

@@ -61,6 +61,21 @@ namespace DataAccess.Entity
             return orderDetail;
         }
         //---------------------------------------------------
+        public IEnumerable<OrderDetail> GetOrderDetailByID(int orderId)
+        {
+            IEnumerable<OrderDetail> orderDetail;
+            try
+            {
+                var context = new SalesManagementSystemContext();
+                orderDetail = context.OrderDetails.Where(orderDetail => orderDetail.OrderId == orderId).ToList();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return orderDetail;
+        }
+        //---------------------------------------------------
         public void AddNew(OrderDetail orderDetail)
         {
             try

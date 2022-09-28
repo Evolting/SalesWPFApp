@@ -10,7 +10,7 @@
         <local:OrderConverter x:Key="Converter" />
     </Window.Resources>
     <StackPanel>
-                <Label Content="Order List"/>
+        <Label Content="Order List"/>
         <Label>Order Id</Label>
         <TextBox 
             Name="txtOrderId"
@@ -47,25 +47,59 @@
                 <MultiBinding Converter="{StaticResource Converter}">
                     <Binding Path="Text" ElementName="txtOrderId"/>
                     <Binding Path="Text" ElementName="txtMemberId"/>
-                    <Binding Path="Text" ElementName="dpOrderDate"/>
-                    <Binding Path="Text" ElementName="dpRequiredDate"/>
-                    <Binding Path="Text" ElementName="dpShippedDate"/>
+                    <Binding Path="SelectedDate" ElementName="dpOrderDate"/>
+                    <Binding Path="SelectedDate" ElementName="dpRequiredDate"/>
+                    <Binding Path="SelectedDate" ElementName="dpShippedDate"/>
                     <Binding Path="Text" ElementName="txtFreight"/>
                 </MultiBinding>
             </Button.CommandParameter>
         </Button>
         <Button Name="btnUpdate" Content="Update"
                 Command="{Binding UpdateCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource Converter}">
+                    <Binding Path="Text" ElementName="txtOrderId"/>
+                    <Binding Path="Text" ElementName="txtMemberId"/>
+                    <Binding Path="SelectedDate" ElementName="dpOrderDate"/>
+                    <Binding Path="SelectedDate" ElementName="dpRequiredDate"/>
+                    <Binding Path="SelectedDate" ElementName="dpShippedDate"/>
+                    <Binding Path="Text" ElementName="txtFreight"/>
+                </MultiBinding>
+            </Button.CommandParameter>
         </Button>
         <Button Name="btnDelete" Content="Delete"
                 Command="{Binding DeleteCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource Converter}">
+                    <Binding Path="Text" ElementName="txtOrderId"/>
+                    <Binding Path="Text" ElementName="txtMemberId"/>
+                    <Binding Path="SelectedDate" ElementName="dpOrderDate"/>
+                    <Binding Path="SelectedDate" ElementName="dpRequiredDate"/>
+                    <Binding Path="SelectedDate" ElementName="dpShippedDate"/>
+                    <Binding Path="Text" ElementName="txtFreight"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        <Button Name="btnDetail" Content="See Order Detail"
+                Command="{Binding DetailCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource Converter}">
+                    <Binding Path="Text" ElementName="txtOrderId"/>
+                    <Binding Path="Text" ElementName="txtMemberId"/>
+                    <Binding Path="SelectedDate" ElementName="dpOrderDate"/>
+                    <Binding Path="SelectedDate" ElementName="dpRequiredDate"/>
+                    <Binding Path="SelectedDate" ElementName="dpShippedDate"/>
+                    <Binding Path="Text" ElementName="txtFreight"/>
+                </MultiBinding>
+            </Button.CommandParameter>
         </Button>
         <ListView Grid.Row="3"
                   Grid.Column="0"
                   Name="lvOrders"
                   ItemsSource="{Binding Orders}"
                   Grid.ColumnSpan="3"
-                  SelectedIndex="0">
+                  SelectedIndex="0"
+                  >
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding OrderId}"

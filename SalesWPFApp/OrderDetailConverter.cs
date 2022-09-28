@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace SalesWPFApp
 {
-    internal class OrderConverter : IMultiValueConverter
+    internal class OrderDetailConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
@@ -21,13 +21,11 @@ namespace SalesWPFApp
                 }
             }
             var objects = (object[])values;
-            var orderId = (string)objects[0];
-            var memberId = (string)values[1];
-            var orderDate = (DateTime)values[2];
-            var requiredDate = (DateTime)values[3];
-            var shippedDate = (DateTime)values[4];
-            var freight = (string)values[5];
-            return new OrderObject(Int32.Parse(orderId), Int32.Parse(memberId), orderDate, requiredDate, shippedDate, Decimal.Parse(freight));
+            var productId = (string)objects[0];
+            var unitPrice = (string)values[1];
+            var quantity = (string)values[2];
+            var discount = (string)values[3];
+            return new OrderDetailObject(0, Int32.Parse(productId), Decimal.Parse(unitPrice), Int32.Parse(quantity), float.Parse(discount));
 
         }
 

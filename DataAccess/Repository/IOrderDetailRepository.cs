@@ -11,6 +11,8 @@ namespace DataAccess.Repository
     {
         IEnumerable<OrderDetail> GetOrderDetails();
         OrderDetail GetOrderDetailByID(int orderID, int productID);
+
+        IEnumerable<OrderDetail> GetOrderDetailByID(int orderID);
         void InsertOrderDetail(OrderDetail orderDetail);
         void DeleteOrderDetail(OrderDetail orderDetail);
         void UpdateOrderDetail(OrderDetail orderDetail);

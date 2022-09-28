@@ -15,9 +15,11 @@ namespace SalesWPFApp
         {
             CreateMap<Member, MemberObject>();
             CreateMap<Order, OrderObject>();
+            CreateMap<OrderDetail, OrderDetailObject>();
             CreateMap<Product, ProductObject>();
             CreateMap<MemberObject, Member>();
             CreateMap<OrderObject, Order>();
+            CreateMap<OrderDetailObject, OrderDetail>();
             CreateMap<ProductObject, Product>();
         }
     }
