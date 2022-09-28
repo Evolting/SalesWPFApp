@@ -1,5 +1,4 @@
-﻿using SalesWPFApp.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,15 +15,13 @@ using System.Windows.Shapes;
 namespace SalesWPFApp
 {
     /// <summary>
-    /// Interaction logic for WindowLogin.xaml
+    /// Interaction logic for WindowStatistic.xaml
     /// </summary>
-    public partial class WindowLogin : Window
+    public partial class WindowStatistic : Window
     {
-        public WindowLogin()
+        public WindowStatistic()
         {
             InitializeComponent();
-
-            DataContext = new LoginViewModel(this);
         }
     }
 }

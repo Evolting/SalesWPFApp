@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SalesWPFApp
+namespace SalesWPFApp.Ultility
 {
     public class MappingProfile : Profile
     {

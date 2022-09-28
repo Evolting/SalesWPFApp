@@ -38,8 +38,6 @@ namespace DataAccess.Entity
             {
                 var context = new SalesManagementSystemContext();
                 members = context.Members.ToList();
-
-                Console.WriteLine(members.Count);
             }
             catch (Exception e)
             {

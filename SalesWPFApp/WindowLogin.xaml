@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SalesWPFApp"
         mc:Ignorable="d"
-        Title="WindowLogin" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="WindowLogin" Height="250" Width="300">
+    <Window.Resources>
+        <local:AccountConverter x:Key="Converter" />
+    </Window.Resources>
+    <StackPanel Margin="0,50,0,0">
+        <Label>Email</Label>
+        <TextBox
+            Name="txtEmail"
+            Text=""></TextBox>
+        <Label>Password</Label>
+        <TextBox
+            Name="txtPassword"
+            Text=""></TextBox>
+        <Button Name="btnLogin" Content="Login" 
+                Command="{Binding LoginCommand}" Margin="0,20,0,0">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource Converter}">
+                    <Binding Path="Text" ElementName="txtEmail"/>
+                    <Binding Path="Text" ElementName="txtPassword"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+    </StackPanel>
 </Window>

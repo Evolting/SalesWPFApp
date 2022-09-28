@@ -1,0 +1,53 @@
+﻿<Window x:Class="SalesWPFApp.WindowStatistic"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalesWPFApp"
+        mc:Ignorable="d"
+        Title="WindowStatistic" Height="400" Width="400">
+    <Window.Resources>
+        <local:MemberConverter x:Key="Converter" />
+    </Window.Resources>
+    <StackPanel>
+        <Label>Statistic Sales</Label>
+        <Label>Start Date</Label>
+        <DatePicker Name="dpStart"></DatePicker>
+        <Label>End Date</Label>
+        <DatePicker Name="dpEnd"></DatePicker>
+        <Button Content="Calculate" Margin="0,20,0,0"
+                Command="{Binding DeleteCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource Converter}">
+                    <Binding Path="SelectedDate" ElementName="dpStart"/>
+                    <Binding Path="SelectedDate" ElementName="dpEnd"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        <ListView Grid.Row="3"
+                  Grid.Column="0"
+                  Name="lvMembers"
+                  ItemsSource="{Binding Members}"
+                  Grid.ColumnSpan="3"
+                  SelectedIndex="0"
+                  Margin="0,20,0,0"
+                  >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Date}"
+                                    Width="100">
+                        <GridViewColumn.Header>
+                            Date
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Total}"
+                                    Width="300">
+                        <GridViewColumn.Header>
+                            Total Sales
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
+</Window>

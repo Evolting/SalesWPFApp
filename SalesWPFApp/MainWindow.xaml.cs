@@ -45,5 +45,12 @@ namespace SalesWPFApp
 
             wdOrders.ShowDialog();
         }
+
+        private void btnStatistic_Click(object sender, RoutedEventArgs e)
+        {
+            WindowStatistic wdStatistic = new WindowStatistic();
+
+            wdStatistic.ShowDialog();
+        }
     }
 }
